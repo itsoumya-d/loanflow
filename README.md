@@ -180,12 +180,20 @@ See `docs/threat-model.md` for the full STRIDE model. Controls include:
 vendor/bin/pint --test
 vendor/bin/phpstan analyse --no-progress --memory-limit=1G
 php artisan test
+composer run test:coverage
 npm run test:gtm
 ```
 
 Current local result: **53 PHP tests / 150 assertions passing**, **6 Node tests passing**, Pint clean and PHPStan level 5 clean.
 
-CI runs the PHP suite on 8.3, 8.4 and 8.5; the feature suite against MySQL 8; the GTM suite on Node 20, 22 and 24; and `php -l` across the WordPress plugin.
+The coverage job runs PHPUnit under PCOV and enforces a floor of **80% app
+statements and 60% app methods** through `scripts/check-coverage.php`. The
+local measurement on 2026-11-04 is **86.33% statements (726/841)** and
+**67.02% methods (63/94)**. Coverage is line-based; branch coverage is not
+claimed. `composer run test:coverage` writes Clover to
+`build/coverage/clover.xml`.
+
+CI runs the PHP suite on 8.3, 8.4 and 8.5; the PCOV coverage gate on 8.4; the feature suite against MySQL 8; the GTM suite on Node 20, 22 and 24; and `php -l` across the WordPress plugin.
 
 ## Evidence and research
 

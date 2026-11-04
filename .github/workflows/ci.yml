@@ -59,6 +59,44 @@ jobs:
       - name: Audit dependencies
         run: composer audit --no-interaction
 
+  coverage:
+    name: Coverage gate (PCOV)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: bcmath, curl, dom, fileinfo, intl, mbstring, openssl, pdo_mysql, pdo_sqlite, simplexml, sqlite3, tokenizer, xml, zip
+          coverage: pcov
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          mkdir -p storage/logs bootstrap/cache
+          chmod -R 775 storage bootstrap/cache
+          php artisan passport:keys --force
+          chmod 600 storage/oauth-private.key storage/oauth-public.key
+
+      - name: Run coverage gate
+        run: composer run test:coverage
+
+      - name: Upload Clover report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clover-coverage
+          path: build/coverage/clover.xml
+          if-no-files-found: warn
+
   mysql:
     name: MySQL 8 integration
     runs-on: ubuntu-latest
