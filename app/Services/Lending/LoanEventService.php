@@ -20,7 +20,7 @@ class LoanEventService
             $locked = LoanApplication::query()->whereKey($application->getKey())->lockForUpdate()->firstOrFail();
             $previous = $locked->events()->orderByDesc('sequence')->value('hash');
             $sequence = ((int) $locked->events()->max('sequence')) + 1;
-            $occurredAt = now();
+            $occurredAt = now()->startOfSecond();
 
             $hash = HashChain::next($previous, [
                 'loan_application_id' => $locked->getKey(),

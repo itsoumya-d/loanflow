@@ -24,7 +24,7 @@ class AuditLogger
         return DB::transaction(function () use ($action, $subject, $metadata, $actor): AuditLog {
             $previous = AuditLog::query()->orderByDesc('sequence')->value('hash');
             $sequence = ((int) AuditLog::query()->max('sequence')) + 1;
-            $createdAt = now();
+            $createdAt = now()->startOfSecond();
             $actorId = $actor?->getAuthIdentifier();
 
             $hash = HashChain::next($previous, [
