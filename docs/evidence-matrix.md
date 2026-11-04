@@ -25,7 +25,7 @@ This matrix maps the target brief to the implementation and to a runnable proof.
 | CI/CD | Implemented | GitHub Actions PHP, MySQL, Node and plugin-lint jobs | `.github/workflows/ci.yml` |
 | Docker | Implemented | Multi-stage `Dockerfile`, `docker-compose.yml`, nginx/PHP config | `docker compose up -d --build` |
 | Documentation | Implemented | README, architecture, threat model, ADRs, research notes | `README.md`, `docs/` |
-| Automated tests | Implemented | 52 PHP tests / 149 assertions; 6 Node tests | `php artisan test`; `npm run test:gtm` |
+| Automated tests | Implemented | 53 PHP tests / 150 assertions; 6 Node tests | `php artisan test`; `npm run test:gtm` |
 | Bank-statement retrieval | Not implemented | Integration boundary only; provider credentials and consent flow are out of scope | Documented in `docs/architecture.md` and `README.md` |
 | SMS delivery | Not implemented | Out of scope; queue and notification boundaries are ready | Documented limitation |
 | AI calling | Not implemented | Out of scope; no vendor credentials or call-recording compliance model | Documented limitation |

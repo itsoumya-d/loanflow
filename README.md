@@ -183,7 +183,7 @@ php artisan test
 npm run test:gtm
 ```
 
-Current local result: **52 PHP tests / 149 assertions passing**, **6 Node tests passing**, Pint clean and PHPStan level 5 clean.
+Current local result: **53 PHP tests / 150 assertions passing**, **6 Node tests passing**, Pint clean and PHPStan level 5 clean.
 
 CI runs the PHP suite on 8.3, 8.4 and 8.5; the feature suite against MySQL 8; the GTM suite on Node 20, 22 and 24; and `php -l` across the WordPress plugin.
 
