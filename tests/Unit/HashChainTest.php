@@ -7,12 +7,21 @@ namespace Tests\Unit;
 use App\Models\LoanApplication;
 use App\Services\Lending\AuditLogger;
 use App\Services\Lending\LoanEventService;
+use App\Support\HashChain;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class HashChainTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_hash_input_is_independent_of_key_order(): void
+    {
+        $first = HashChain::next(null, ['b' => 2, 'a' => ['z' => 1, 'y' => 2]]);
+        $second = HashChain::next(null, ['a' => ['y' => 2, 'z' => 1], 'b' => 2]);
+
+        $this->assertSame($first, $second);
+    }
 
     public function test_event_chain_verifies_and_detects_tampering(): void
     {
