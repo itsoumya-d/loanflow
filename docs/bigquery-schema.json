@@ -1,0 +1,44 @@
+[
+  {
+    "name": "event_id",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "UUID of the loan event."
+  },
+  {
+    "name": "application_reference",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Human-readable application reference, for example LF-2026-ABCD1234."
+  },
+  {
+    "name": "event_type",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Domain event type, for example loan_application.received."
+  },
+  {
+    "name": "occurred_at",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "Event time in ISO 8601."
+  },
+  {
+    "name": "payload",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "JSON-encoded event payload. No direct PII is required."
+  },
+  {
+    "name": "environment",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Application environment, for example production."
+  },
+  {
+    "name": "schema_version",
+    "type": "INTEGER",
+    "mode": "REQUIRED",
+    "description": "Event schema version."
+  }
+]

@@ -1,0 +1,17 @@
+feature,original,clone,status,evidence,notes
+Online loan application form,yes,yes,shipped,wordpress/loanflow-intake,Shortcode with accessible markup
+Server-side validation,yes,yes,shipped,Loanflow_Form::validate,Re-validated in Laravel FormRequest
+Document upload (ID and bank statements),yes,no,out-of-scope,docs/architecture.md,Integration boundary documented
+Application status timeline,implied,yes,shipped,GET /api/v1/loan-applications/{reference}/timeline,Addresses top review theme
+Next step and expected response time,implied,no,planned,docs/research/entrepreneur.md,Next iteration
+Lender API integrations,yes,partial,architecture,routes/api.php,Generic integration patterns; no lender credentials
+Keap CRM sync,yes,yes,shipped,KeapClient,Create/update with retry
+OAuth 2.0,yes,yes,shipped,Laravel Passport,Client credentials and scoped tokens
+WordPress presence,yes,yes,shipped,wordpress/loanflow-intake,Intake plugin
+GTM and server-side tagging,yes,yes,shipped,gtm/datalayer.mjs and template,Consent-aware
+BigQuery,yes,yes,shipped,BigQueryExporter,Service-account JWT
+SMS notifications,yes,no,out-of-scope,docs/architecture.md,Provider adapter not built
+AI calling,yes,no,out-of-scope,docs/architecture.md,Provider adapter not built
+Security and OWASP controls,yes,yes,shipped,docs/threat-model.md,RBAC/HMAC/encryption/audit
+CI/CD,yes,yes,shipped,.github/workflows/ci.yml,PHP/MySQL/Node/plugin lint
+Operations UI,implied,no,out-of-scope,README.md,API-first reference build
