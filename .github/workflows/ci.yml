@@ -42,9 +42,10 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
-          php artisan passport:keys --force
           mkdir -p storage/logs bootstrap/cache
           chmod -R 775 storage bootstrap/cache
+          php artisan passport:keys --force
+          chmod 600 storage/oauth-private.key storage/oauth-public.key
 
       - name: Check formatting
         run: vendor/bin/pint --test
@@ -93,9 +94,10 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
-          php artisan passport:keys --force
           mkdir -p storage/logs bootstrap/cache
           chmod -R 775 storage bootstrap/cache
+          php artisan passport:keys --force
+          chmod 600 storage/oauth-private.key storage/oauth-public.key
 
       - name: Run migrations against MySQL
         env:
