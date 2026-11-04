@@ -117,7 +117,7 @@ jobs:
           DB_DATABASE: loanflow_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: php artisan test --configuration phpunit.mysql.xml
+        run: vendor/bin/phpunit --configuration phpunit.mysql.xml
 
   gtm:
     name: GTM Node ${{ matrix.node }}
